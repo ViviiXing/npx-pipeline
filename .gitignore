@@ -1,0 +1,16 @@
+# Python environment and cache
+.venv/
+__pycache__/
+*.pyc
+
+# Data and sorting outputs (never commit)
+*.dat
+*.npy
+*.bin
+.phy/
+postprocess/
+postprocess_preview/
+
+# Editor settings (keep tasks.json)
+.vscode/*
+!.vscode/tasks.json

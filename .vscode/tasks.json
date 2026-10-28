@@ -1,0 +1,45 @@
+{
+  // VS Code tasks for the Neuropixels pipeline.
+  // Run with: Terminal > Run Task... > "NPX: pipeline"  (or Ctrl+Shift+P > Tasks: Run Task)
+  "version": "2.0.0",
+  "inputs": [
+    {
+      "id": "session",
+      "type": "promptString",
+      "description": "Session folder (the one that contains 'Record Node 101'), e.g. D:\\xyw\\newsorting\\NPX\\Rawdata\\RHA1-000385_2026-10-21_14-09-44"
+    },
+    {
+      "id": "step",
+      "type": "pickString",
+      "description": "Which step?",
+      "options": ["all", "status", "env", "inspect", "badch", "region", "sort", "drift", "phy", "check-curation", "waveforms", "fix-paths"],
+      "default": "all"
+    },
+    {
+      "id": "probes",
+      "type": "promptString",
+      "description": "Probe names, comma-separated (leave empty for all probes)",
+      "default": ""
+    }
+  ],
+  "tasks": [
+    {
+      "label": "NPX: pipeline",
+      "type": "process",
+      "command": "${workspaceFolder}\\.venv\\Scripts\\python.exe",
+      "args": ["pipeline.py", "${input:session}", "--step", "${input:step}", "--probes", "${input:probes}"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "presentation": { "reveal": "always", "focus": true, "panel": "dedicated", "clear": false },
+      "problemMatcher": []
+    },
+    {
+      "label": "NPX: environment check",
+      "type": "process",
+      "command": "${workspaceFolder}\\.venv\\Scripts\\python.exe",
+      "args": ["pipeline.py", "${input:session}", "--step", "env"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "presentation": { "reveal": "always", "focus": true, "panel": "dedicated" },
+      "problemMatcher": []
+    }
+  ]
+}

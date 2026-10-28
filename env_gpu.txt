@@ -1,0 +1,2 @@
+﻿name, driver_version, memory.total [MiB]
+NVIDIA GeForce RTX 4070, 610.88, 12282 MiB
